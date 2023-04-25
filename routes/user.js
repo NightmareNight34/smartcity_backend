@@ -1,5 +1,5 @@
 
-//signup page call
+
 exports.signup = function(req, res)
 {
    message = '';
@@ -17,7 +17,7 @@ exports.signup = function(req, res)
       var query = db.query(sql, function(err, result) 
       {
 
-         message = "Succesfully! Your account has been created.";
+         message = "Аккаунт зарегистрирован!.";
          res.render('signup.ejs',{message: message});
       });
 
@@ -27,7 +27,7 @@ exports.signup = function(req, res)
    }
 };
  
-//login page call
+
 exports.login = function(req, res)
 {
    var message = '';
@@ -61,7 +61,7 @@ exports.login = function(req, res)
    }
            
 };
-//dashboard page functionality
+
            
 exports.dashboard = function(req, res, next)
 {
@@ -82,7 +82,7 @@ exports.dashboard = function(req, res, next)
       res.render('dashboard.ejs', {user:user});    
    });       
 };
-//logout functionality
+
 exports.logout=function(req,res)
 {
    req.session.destroy(function(err)
@@ -90,7 +90,7 @@ exports.logout=function(req,res)
       res.redirect("/login");
    })
 };
-//render user details after login
+
 exports.profile = function(req, res)
 {
 
@@ -107,7 +107,7 @@ exports.profile = function(req, res)
       res.render('profile.ejs',{data:result});
    });
 };
-//edit users details after login
+
 exports.editprofile=function(req,res)
 {
    var userId = req.session.userId;
