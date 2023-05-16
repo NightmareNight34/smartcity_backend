@@ -81,34 +81,7 @@ function renderData(id)
     });
 }
     
-form.addEventListener('submit', e => 
-{
-    e.preventDefault();
-    const text = form['todos'].value;
-    let id = counter += 1;
-    form.reset();
 
-    auth.onAuthStateChanged(user =>
-    {
-        if(user)
-        {
-            db.collection(user.uid).doc('_' + id).set
-            (
-                {
-                    id: '_' + id,
-                    text,
-                    completed: false
-                }
-            ).then(() =>
-            {
-                console.log('todo added');
-            }).catch(err => 
-                {
-                    console.log(err.message);
-                })
-        }
-    })
-});
 
 function filterHandler(status)
 {
@@ -128,6 +101,79 @@ function filterHandler(status)
     todoContainer.innerHTML = ""
     todos.forEach(todo => renderData(todo.id))    
 }
+
+
+
+
+
+
+form.addEventListener('submit', e => 
+{
+    e.preventDefault();
+    const text = form['todos'].value;
+    let id = counter += 1;
+    form.reset();
+
+   
+   var userId = req.session.userId;
+   if(userId == null)
+   {
+      res.redirect("/login");
+      return;
+   }
+
+   var sql = "INSERT INTO `tasks`(`task_name`,`ID_user`) VALUES ('" + text + "','" + userId + "')";
+   db.query(sql, function(err, results)
+   {
+      res.render('tasks.ejs',{data:results});
+   });
+   console.log(text);
+
+});
+
+function filterHandler(status)
+{
+    if(status === "completed")
+    {
+        todos = JSON.parse(localStorage.getItem('todos')).filter(todo => todo.completed);
+    }
+    else if(status === "open")
+    {
+        todos = JSON.parse(localStorage.getItem('todos')).filter(todo => !todo.completed);
+    }
+    else if(status === "add")
+    {
+        e.preventDefault();
+        const text = form['todos'].value;
+        let id = counter += 1;
+        form.reset();
+    
+       
+       var userId = req.session.userId;
+       if(userId == null)
+       {
+          res.redirect("/login");
+          return;
+       }
+    
+       var sql = "INSERT INTO `tasks`(`task_name`,`ID_user`) VALUES ('" + text + "','" + userId + "')";
+       db.query(sql, function(err, results)
+       {
+          res.render('tasks.ejs',{data:results});
+       });
+       console.log(text);
+    }
+    else
+    {
+        todos = JSON.parse(localStorage.getItem('todos'));
+    }
+
+    todoContainer.innerHTML = ""
+    todos.forEach(todo => renderData(todo.id))    
+}
+
+
+
 auth.onAuthStateChanged(user => 
     {
         if(user)

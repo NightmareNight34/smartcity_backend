@@ -4,13 +4,24 @@
 
 <div class="jumbotron">
 	<h1>Задачи</h1>
-    <div id="todo-container">
-
-    </div>
-    <div class="buttons">
-        <button id="all" onclick="filterHandler('all')" class="button button1 hover_button">All</button>
-        <button id="open" onclick="filterHandler('open')" class="button button2 hover_button">Open</button>
-        <button id="finished" onclick="filterHandler('completed')" class="button button3 hover_button">Finished</button>
+    <div class="container">
+        <form id="form" class="todo-form">
+            <div>
+                <label for="todos"></label>
+                <input type="text" id="todos" required>
+            </div>
+            <button id="add" type="submit" onclick="filterHandler('add')" class="button button1 hover_button">Add task</button>
+        </form>
+        <div id="todo-container">
+    
+        </div>
+        <div class="buttons">
+            <button id="all" onclick="filterHandler('all')" class="button button1 hover_button">All</button>
+            <button id="open" onclick="filterHandler('open')" class="button button2 hover_button">Open</button>
+            <button id="finished" onclick="filterHandler('completed')" class="button button3 hover_button">Finished</button>
+        </div>
+    
+    
     </div>
 
 </div>	
