@@ -46,5 +46,6 @@ app.post('/login', user.login);//call for login post
 app.get('/home/dashboard', user.dashboard);//call for dashboard page after login
 app.get('/home/logout', user.logout);//call for logout
 app.get('/home/profile',user.profile);//to render users profile
+app.get('/home/tasks',user.tasks);//to render task page
 
 app.listen(8080)
