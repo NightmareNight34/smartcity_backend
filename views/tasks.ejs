@@ -1,0 +1,20 @@
+<html lang="en">
+
+<%- include header %>
+
+<div class="jumbotron">
+	<h1>Задачи</h1>
+    <div id="todo-container">
+
+    </div>
+    <div class="buttons">
+        <button id="all" onclick="filterHandler('all')" class="button button1 hover_button">All</button>
+        <button id="open" onclick="filterHandler('open')" class="button button2 hover_button">Open</button>
+        <button id="finished" onclick="filterHandler('completed')" class="button button3 hover_button">Finished</button>
+    </div>
+
+</div>	
+
+<script src="js/tasks.js"></script>
+
+<%- include footer %>

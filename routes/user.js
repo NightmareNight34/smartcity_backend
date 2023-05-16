@@ -123,3 +123,22 @@ exports.editprofile=function(req,res)
       res.render('edit_profile.ejs',{data:results});
    });
 };
+exports.tasks = function(req, res, next)
+{
+           
+   var user =  req.session.user,
+   userId = req.session.userId;
+   console.log('ddd='+userId);
+   if(userId == null)
+   {
+      res.redirect("/login");
+      return;
+   }
+
+   var sql="SELECT * FROM `users` WHERE `id`='"+userId+"'";
+
+   db.query(sql, function(err, results)
+   {
+      res.render('tasks.ejs', {user:user});    
+   });       
+};
